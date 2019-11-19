@@ -4,7 +4,6 @@ import threading
 import os
 import sys
   
-#import datetime
 def fileStuff():
     global settings
     settings = []
@@ -23,7 +22,7 @@ def fileStuff():
                 
         else:
             createFile = open("server.properties", "w+")
-            createFile.write("servername=\nport=56000\nmaxusers=5")
+            createFile.write("servername=HIKchat server\nip=localhost\nport=56000\nmaxusers=5\ndescription=")
             createFile.close()
     
 def broadcast(msg):
@@ -42,7 +41,7 @@ def broadcast(msg):
 
 
 def new_client(clientsocket, addr):
-    servernameanddescription = "servernameanddescription/" + settings[0] + "¤" + settings[3] + "¤"
+    servernameanddescription = "servernameanddescription/" + settings[0] + "¤" + settings[4] + "¤"
     try:
         clientsocket.send(servernameanddescription.encode())
     except:
@@ -75,7 +74,7 @@ def new_client(clientsocket, addr):
 
 def accept_clients(s):
     while True:
-       if not len(clients) >= int(settings[2]):
+       if not len(clients) >= int(settings[3]):
            try:
                c, addr = s.accept()  
                clients.append(c)
@@ -94,23 +93,22 @@ fileStuff()
 s = socket.socket()    
               
 hostname = socket.gethostname()    
-IPAddr = socket.gethostbyname(hostname)
 
-if settings[1] != "":
-    port = int(settings[1])
+if settings[2] != "":
+    port = int(settings[2])
 else:
     print("no port specified. new port found.")
     port = 0
 
 try:
-    s.bind((IPAddr, port))
+    s.bind((settings[1], port))
     print("Port and ip binded")
 except:
     print("Could not bind port and ip")
     sys.exit()
  
 print("\nWaiting for connection...")
-print("IP: " + IPAddr + " Port: " + str(port))
+print("IP: " + settings[1] + " \n" + "Port: " + str(port))
 
 clients = []
 clientsData = []
