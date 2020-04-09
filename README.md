@@ -1,6 +1,6 @@
 ## Join a chat room
 How do I join a chat room/server? Follow the 3 simple steps below
-1. Download the client [here](https://ingvar.xyz/downloads/standalone/HIKchat%201.0%20Setup.exe)
+1. Download the client [here](https://ingvar.xyz/downloads/standalone/HIKchat%201.0%20Setup.exe) (or compile it yourself)
 2. Follow the installation instructions
 3. Join a server!
 
